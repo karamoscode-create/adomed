@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "524478716523",
+    "project_id": "adomed-chatbot-nouveau",
+    "storage_bucket": "adomed-chatbot-nouveau.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524478716523:android:2e1381dc5c1126673fef2e",
+        "android_client_info": {
+          "package_name": "com.example.adomed_admin_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1MDKxGCA3tQEChZ3m7KrDMm19aA4LIhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524478716523:android:3d3100afceb41fe33fef2e",
+        "android_client_info": {
+          "package_name": "com.example.adomed_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1MDKxGCA3tQEChZ3m7KrDMm19aA4LIhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

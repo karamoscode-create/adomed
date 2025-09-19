@@ -1,0 +1,23 @@
+# flutter_native_splash.yaml
+
+# Cette configuration génère un écran de démarrage natif pour Android et iOS.
+# Pour plus d'informations : https://pub.dev/packages/flutter_native_splash
+
+flutter_native_splash:
+  # Configuration de l'image du splash screen.
+  # Assurez-vous que l'image existe dans vos assets.
+  image: "assets/images/Adomed-logo.png"
+
+  # Configuration du background.
+  # La couleur est définie avec le format RRGGBB.
+  color: "#ffffff"
+
+  # Configuration du splash screen pour les modes sombre et clair.
+  # Si vous ne supportez pas le mode sombre, vous pouvez l'ignorer.
+  android: true
+  ios: true
+  web: false
+
+  # Le splash screen est un écran de démarrage complet avec une icône.
+  android_gravity: center
+  ios_content_mode: center

@@ -1,0 +1,57 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "adomed-chatbot-nouveau",
+          "appId": "1:524478716523:android:3d3100afceb41fe33fef2e",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "adomed-chatbot-nouveau",
+          "appId": "1:524478716523:ios:9b16213d6ee811c53fef2e",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "macos": {
+        "default": {
+          "projectId": "adomed-chatbot-nouveau",
+          "appId": "1:524478716523:ios:9b16213d6ee811c53fef2e",
+          "uploadDebugSymbols": false,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "adomed-chatbot-nouveau",
+          "configurations": {
+            "android": "1:524478716523:android:3d3100afceb41fe33fef2e",
+            "ios": "1:524478716523:ios:9b16213d6ee811c53fef2e",
+            "macos": "1:524478716523:ios:9b16213d6ee811c53fef2e",
+            "web": "1:524478716523:web:046e9ea4998373213fef2e",
+            "windows": "1:524478716523:web:046e9ea4998373213fef2e"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint"
+      ]
+    }
+  ]
+}
