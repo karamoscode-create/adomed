@@ -131,7 +131,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 children: [
                   DotsIndicator(
                     dotsCount: pages.length,
-                    position: _currentPage,
+                    position: _currentPage.toDouble(),
                     decorator: DotsDecorator(
                       size: const Size.square(9.0),
                       activeSize: const Size(18.0, 9.0),
