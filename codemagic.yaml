@@ -10,24 +10,18 @@ workflows:
         - code_signing # Fait le lien avec vos certificats de l'interface
 
     scripts:
-      - name: Set up keychain and provisioning profiles
-        script: | 
-          keychain initialize
-          keychain add-certificates
-          profile install
-      - name: Get Flutter packages
+      - name: Get dependencies
         script: | 
           flutter packages pub get
       - name: Install pods
         script: | 
           find . -name "Podfile" -execdir pod install \;
-      - name: Build IPA
+      - name: Build Xcode project
         script: | 
-          flutter build ipa --release --flavor ios-production
+          flutter build ios --release --flavor ios-production --no-codesign
 
     artifacts:
-      - build/ios/ipa/*.ipa
-      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/Products/Release-iphoneos/*.dSYM
+      - build/ios/iphoneos/*.app
 
     publishing:
       app_store_connect:
