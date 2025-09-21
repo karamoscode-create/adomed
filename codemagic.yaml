@@ -1,0 +1,27 @@
+workflows:
+  default-workflow:
+    name: Default Workflow
+    instance_type: mac_mini_m2
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    
+    scripts:
+      - name: Get Flutter packages
+        script: | 
+          flutter packages pub get
+      - name: Install pods
+        script: | 
+          find . -name "Podfile" -execdir pod install \;
+      - name: Build IPA
+        script: | 
+          flutter build ipa --release --flavor ios-production
+
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/Products/Release-iphoneos/*.dSYM
+
+    publishing:
+      app_store_connect:
+        api_key: $CM_API_KEY
