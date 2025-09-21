@@ -8,6 +8,7 @@ import 'recipe_detail_screen.dart';
 import 'recipe_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'planning_dialog.dart';
+import '../../data/recipe_seeder.dart'; // IMPORT AJOUTÉ
 
 class RecipeByAgeScreen extends StatefulWidget {
   const RecipeByAgeScreen({super.key});
@@ -26,7 +27,7 @@ class _RecipeByAgeScreenState extends State<RecipeByAgeScreen> {
   final String _currentUserId = FirebaseAuth.instance.currentUser!.uid;
   final TextEditingController _searchController = TextEditingController();
 
-  final List<String> ageGroups = ['4-6 mois', '6-8 mois', '8-12 mois', '12-18 mois', '18+ mois'];
+  final List<String> ageGroups = ['4-6 mois', '6-8 mois', '8-12 mois', '12-18 mois', '18+ mois', '24+ mois', '60+ mois'];
   final List<String> genders = ['Masculin', 'Féminin'];
   final List<String> textures = ['Toutes', 'Purée', 'Morceaux', 'Mixte', 'Liquide'];
   final List<String> restrictions = ['Sans œuf', 'Sans lait', 'Sans gluten', 'Sans arachides', 'Sans sucre ajouté'];
@@ -127,6 +128,13 @@ class _RecipeByAgeScreenState extends State<RecipeByAgeScreen> {
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppTheme.textPrimaryColor),
                             ),
                           ),
+                          // BOUTON TEMPORAIRE AJOUTÉ - À RETIRER APRÈS UTILISATION
+                          IconButton(
+                            icon: const Icon(Icons.sync, color: Colors.blue),
+                            tooltip: 'Mettre à jour les recettes',
+                            onPressed: () => completeReset(context),
+                          ),
+                          // FIN DU BOUTON TEMPORAIRE
                           IconButton(
                             icon: const Icon(Icons.tune, color: AppTheme.textPrimaryColor),
                             onPressed: _showFiltersBottomSheet,

@@ -8,6 +8,7 @@ import 'recipe_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'planning_dialog.dart';
+import '../../data/recipe_seeder.dart'; // IMPORT AJOUTÉ
 
 const Map<String, List<String>> ingredientsData = {
   'Légumes': [ 'Brocoli', 'Carotte', 'Concombre', 'Courge', 'Courgette', 'Epinard', 'Gombo', 'Haricots verts', 'Navet', 'Oignon', 'Petits pois', 'Salade', 'Tomate' ],
@@ -87,7 +88,13 @@ class _RecipeByIngredientScreenState extends State<RecipeByIngredientScreen> {
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppTheme.textPrimaryColor),
                             ),
                           ),
-                          const SizedBox(width: 48),
+                          // BOUTON TEMPORAIRE AJOUTÉ - À RETIRER APRÈS UTILISATION
+                          IconButton(
+                            icon: const Icon(Icons.sync, color: Colors.blue),
+                            tooltip: 'Mettre à jour les recettes',
+                            onPressed: () => completeReset(context),
+                          ),
+                          // FIN DU BOUTON TEMPORAIRE
                         ],
                       ),
                     ),

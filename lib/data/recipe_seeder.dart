@@ -748,8 +748,8 @@ Future<void> addInitialRecipes(BuildContext context) async {
         'nutrition': {'calories': 80, 'carbs': 10, 'protein': 1, 'fat': 4},
       },
       {
-        'title': 'Compote mangue – made (côcôta)',
-        'ageGroup': '6-8 mois',
+        'title': 'Compote de mangue – made (côcôta)',
+        'ageGroup': '8-12 mois',
         'imageUrl': 'assets/images/22m.png',
         'ingredients': ['Mangue', 'Made'],
         'materials': ['Couteau', 'Casserole', 'Mixeur'],
@@ -1233,7 +1233,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
         'title': 'Compote de mangue',
         'ageGroup': '6-8 mois',
         'imageUrl': 'assets/images/48m.png',
-        'ingredients': ['Mangue'],
+        'ingredients': ['Mangue', 'Eau'],
         'materials': ['Casserole', 'Mixeur'],
         'instructions': [
           'Faites cuire la mangue à la vapeur ou avec de l\'eau.',
@@ -1411,7 +1411,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       },
       {
         'title': 'Riz au gras au poisson',
-        'ageGroup': '18+ mois',
+        'ageGroup': '24+ mois',
         'imageUrl': 'assets/images/riz_gras_poisson.png',
         'ingredients': ['Riz', 'Maquereau fumé', 'Tomate', 'Carotte', 'Oignon'],
         'materials': ['Couteau', 'Casserole'],
@@ -1429,7 +1429,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       },
       {
         'title': 'Pain perdus',
-        'ageGroup': '18+ mois',
+        'ageGroup': '24+ mois',
         'imageUrl': 'assets/images/pain_perdus.png',
         'ingredients': ['Pain', 'Œuf', 'Lait', 'Sucre', 'Beurre', 'Cannelle'],
         'materials': ['Bol', 'Poêle'],
@@ -1447,7 +1447,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       },
       {
         'title': 'Couscous au poulet',
-        'ageGroup': '18+ mois',
+        'ageGroup': '24+ mois',
         'imageUrl': 'assets/images/couscous_poulet.png',
         'ingredients': ['Couscous', 'Poulet', 'Oignon', 'Courge', 'Carotte', 'Haricots verts', 'Tomate'],
         'materials': ['Couteau', 'Casserole'],
@@ -1465,7 +1465,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       },
       {
         'title': 'Abolo poisson frit',
-        'ageGroup': '18+ mois',
+        'ageGroup': '24+ mois',
         'imageUrl': 'assets/images/04e.png',
         'ingredients': ['Riz', 'Farine de riz', 'Farine de blé', 'Maïzena', 'Poisson', 'Tomate', 'Oignon'],
         'materials': ['Couteau', 'Casserole', 'Mixeur'],
@@ -1484,7 +1484,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       },
       {
         'title': 'Sandwich au saucisson grillé',
-        'ageGroup': '18+ mois',
+        'ageGroup': '60+ mois',
         'imageUrl': 'assets/images/sandwich_saucisson.png',
         'ingredients': ['Pain', 'Saucisson', 'Salade', 'Tomate', 'Oignon', 'Fromage', 'Beurre'],
         'materials': ['Couteau', 'Poêle'],
@@ -1502,7 +1502,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       },
       {
         'title': 'Cocktail ananas - mangue',
-        'ageGroup': '18+ mois',
+        'ageGroup': '24+ mois',
         'imageUrl': 'assets/images/06.epng.png',
         'ingredients': ['Ananas', 'Mangue'],
         'materials': ['Mixeur'],
@@ -1757,7 +1757,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       },
       {
         'title': 'Cookies de noël',
-        'ageGroup': '12-18 mois',
+        'ageGroup': '15-18 mois',
         'imageUrl': 'assets/images/14c.png',
         'ingredients': ['Farine de blé', 'Sucre', 'Beurre', 'Œufs'],
         'materials': ['Saladier', 'Four'],
