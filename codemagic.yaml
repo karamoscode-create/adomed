@@ -6,8 +6,15 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: default
-    
+      groups:
+        - code_signing # Fait le lien avec vos certificats de l'interface
+
     scripts:
+      - name: Set up keychain and provisioning profiles
+        script: | 
+          keychain initialize
+          keychain add-certificates
+          profile install
       - name: Get Flutter packages
         script: | 
           flutter packages pub get
