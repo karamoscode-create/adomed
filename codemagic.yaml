@@ -10,18 +10,16 @@ workflows:
         - code_signing # Fait le lien avec vos certificats de l'interface
 
     scripts:
-      - name: Get dependencies
+      - name: Install dependencies
         script: | 
           flutter packages pub get
-      - name: Install pods
+          find . -name "Podfile" -execdir pod install --repo-update
+      - name: Build IPA
         script: | 
-          find . -name "Podfile" -execdir pod install \;
-      - name: Build Xcode project
-        script: | 
-          flutter build ios --release --flavor ios-production --no-codesign
+          flutter build ipa --release --flavor ios-production
 
     artifacts:
-      - build/ios/iphoneos/*.app
+      - build/ios/ipa/*.ipa
 
     publishing:
       app_store_connect:
