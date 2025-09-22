@@ -42,7 +42,7 @@ dependencies:
   google_generative_ai: ^0.2.2
   http: ^1.1.0
   image_picker: ^1.0.4
-  intl: ^0.18.1
+  intl: ^0.20.2
   path_provider: ^2.1.1
   permission_handler: ^11.1.0
   flutter_sound: ^9.2.13
@@ -53,7 +53,7 @@ dependencies:
   
   # State Management & Gauges
   provider: ^6.1.1
-  syncfusion_flutter_gauges: ^23.2.7
+  syncfusion_flutter_gauges: ^31.1.20
 
   # Spécifiques
   country_state_city_picker: ^1.2.8

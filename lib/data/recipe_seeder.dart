@@ -320,7 +320,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Compote de mangue',
         'ageGroup': '4-6 mois',
-        'imageUrl': 'assets/images/compote_mangue_4m.png',
+        'imageUrl': 'assets/images/compote_mangue.png',
         'ingredients': ['Mangue'],
         'materials': ['Couteau', 'Casserole', 'Mixeur'],
         'instructions': [
@@ -339,7 +339,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Compote de pomme',
         'ageGroup': '4-6 mois',
-        'imageUrl': 'assets/images/compote_pomme_4m.png',
+        'imageUrl': 'assets/images/compote_pomme.png',
         'ingredients': ['Pomme'],
         'materials': ['Couteau', 'Casserole', 'Mixeur'],
         'instructions': [
@@ -358,7 +358,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Purée de courge',
         'ageGroup': '4-6 mois',
-        'imageUrl': 'assets/images/puree_courge_4m.png',
+        'imageUrl': 'assets/images/puree_courge.png',
         'ingredients': ['Courge'],
         'materials': ['Couteau', 'Casserole', 'Mixeur'],
         'instructions': [
@@ -377,7 +377,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Compote de poire',
         'ageGroup': '4-6 mois',
-        'imageUrl': 'assets/images/compote_poire_4m.png',
+        'imageUrl': 'assets/images/compote_poire.png',
         'ingredients': ['Poire'],
         'materials': ['Couteau', 'Casserole', 'Mixeur'],
         'instructions': [
@@ -396,7 +396,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Purée de carotte au beurre',
         'ageGroup': '6-8 mois',
-        'imageUrl': 'assets/images/puree_carotte_beurre_6m.png',
+        'imageUrl': 'assets/images/puree_carotte.png',
         'ingredients': ['Carotte', 'Beurre'],
         'materials': ['Couteau', 'Casserole', 'Mixeur'],
         'instructions': [
@@ -415,7 +415,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Purée d’avocat – pomme de terre',
         'ageGroup': '6-8 mois',
-        'imageUrl': 'assets/images/puree_avocat_pommedeterre.png',
+        'imageUrl': 'assets/images/puree_avocat_banane.png',
         'ingredients': ['Avocat', 'Pomme de terre'],
         'materials': ['Couteau', 'Casserole', 'Mixeur'],
         'instructions': [
@@ -433,7 +433,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Purée de plantain - épinard',
         'ageGroup': '6-8 mois',
-        'imageUrl': 'assets/images/puree_plantain_epinard_6m.png',
+        'imageUrl': 'assets/images/puree_plantain.png',
         'ingredients': ['Banane plantain', 'Epinard', 'Huile végétale'],
         'materials': ['Couteau', 'Casserole', 'Mixeur'],
         'instructions': [
@@ -507,7 +507,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Purée de patate douce aux épinards - poisson',
         'ageGroup': '6-8 mois',
-        'imageUrl': 'assets/images/puree_patatedouce_poisson.png',
+        'imageUrl': 'assets/images/puree_patate_douce.png',
         'ingredients': ['Patate douce', 'Poisson', 'Echalotte', 'Tomate', 'Carotte', 'Epinard', 'Huile végétale'],
         'materials': ['Couteau', 'Casserole', 'Mixeur'],
         'instructions': [
@@ -545,7 +545,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Purée de maïs au beurre',
         'ageGroup': '6-8 mois',
-        'imageUrl': 'assets/images/09m.png',
+        'imageUrl': 'assets/images/Puree_mais.png',
         'ingredients': ['Maïs', 'Beurre'],
         'materials': ['Mixeur'],
         'instructions': [
@@ -750,7 +750,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Compote de mangue – made (côcôta)',
         'ageGroup': '8-12 mois',
-        'imageUrl': 'assets/images/22m.png',
+        'imageUrl': 'assets/images/09a.png',
         'ingredients': ['Mangue', 'Made'],
         'materials': ['Couteau', 'Casserole', 'Mixeur'],
         'instructions': [
@@ -1412,7 +1412,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Riz au gras au poisson',
         'ageGroup': '24+ mois',
-        'imageUrl': 'assets/images/riz_gras_poisson.png',
+        'imageUrl': 'assets/images/riz_au_gras.png',
         'ingredients': ['Riz', 'Maquereau fumé', 'Tomate', 'Carotte', 'Oignon'],
         'materials': ['Couteau', 'Casserole'],
         'instructions': [
@@ -1430,7 +1430,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Pain perdus',
         'ageGroup': '24+ mois',
-        'imageUrl': 'assets/images/pain_perdus.png',
+        'imageUrl': 'assets/images/pain_perdu.png',
         'ingredients': ['Pain', 'Œuf', 'Lait', 'Sucre', 'Beurre', 'Cannelle'],
         'materials': ['Bol', 'Poêle'],
         'instructions': [
@@ -1521,7 +1521,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Dessert Œuf au lait',
         'ageGroup': '12-18 mois',
-        'imageUrl': 'assets/images/dessert_oeuf_lait.png',
+        'imageUrl': 'assets/images/oeuf_au_lait.png',
         'ingredients': ['Œuf', 'Lait', 'Muscade', 'Sucre vanillé'],
         'materials': ['Bol', 'Casserole'],
         'instructions': [
@@ -1539,7 +1539,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Crêpe de sorgho',
         'ageGroup': '12-18 mois',
-        'imageUrl': 'assets/images/crepe_sorgho.png',
+        'imageUrl': 'assets/images/crepes_sorgho.png',
         'ingredients': ['Œuf', 'Lait', 'Farine de sorgho', 'Muscade'],
         'materials': ['Bol', 'Poêle'],
         'instructions': [
@@ -1557,7 +1557,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Jus de pastèque aux agrumes',
         'ageGroup': '12-18 mois',
-        'imageUrl': 'assets/images/jus_pasteque_agrumes.png',
+        'imageUrl': 'assets/images/jus_pasteque.png',
         'ingredients': ['Pastèque', 'Citron', 'Orange'],
         'materials': ['Mixeur'],
         'instructions': [
@@ -1593,7 +1593,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Bouillie de riz – banane au miel',
         'ageGroup': '12-18 mois',
-        'imageUrl': 'assets/images/bouillie_riz_banane_miel.png',
+        'imageUrl': 'assets/images/bouillie_banane.png',
         'ingredients': ['Riz', 'Banane', 'Miel'],
         'materials': ['Casserole', 'Mixeur'],
         'instructions': [
@@ -1777,7 +1777,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Couscous aux légumes et poulet',
         'ageGroup': '8-12 mois',
-        'imageUrl': 'assets/images/couscous_legumes_poulet.png',
+        'imageUrl': 'assets/images/couscous_poulet_legumes.png',
         'ingredients': ['Couscous', 'Poulet', 'Navet', 'Courgette', 'Courge', 'Oignon', 'Curry'],
         'materials': ['Couteau', 'Casserole'],
         'instructions': [
@@ -1795,7 +1795,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Purée de riz à l’œuf et persil',
         'ageGroup': '8-12 mois',
-        'imageUrl': 'assets/images/puree_riz_oeuf_persil.png',
+        'imageUrl': 'assets/images/puree_riz_oeuf.png',
         'ingredients': ['Riz', 'Œuf', 'Persil', 'Beurre'],
         'materials': ['Casserole'],
         'instructions': [
@@ -1813,7 +1813,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Purée d’igname - poisson',
         'ageGroup': '9-12 mois',
-        'imageUrl': 'assets/images/02a.png',
+        'imageUrl': 'assets/images/05a.png',
         'ingredients': ['Igname', 'Poisson fumé', 'Tomate', 'Oignon'],
         'materials': ['Couteau', 'Casserole'],
         'instructions': [
@@ -1831,7 +1831,7 @@ Future<void> addInitialRecipes(BuildContext context) async {
       {
         'title': 'Purée de lentilles aux légumes',
         'ageGroup': '8-12 mois',
-        'imageUrl': 'assets/images/puree_lentilles_legumes.png',
+        'imageUrl': 'assets/images/puree_lentilles.png',
         'ingredients': ['Lentilles', 'Carotte', 'Oignon', 'Tomate', 'Curry'],
         'materials': ['Casserole', 'Mixeur'],
         'instructions': [
@@ -1973,6 +1973,202 @@ Future<void> addInitialRecipes(BuildContext context) async {
         'difficulty': 'Moyen',
         'allergens': ['Poisson'],
         'nutrition': {'calories': 200, 'carbs': 25, 'protein': 12, 'fat': 6},
+      },
+      // RECETTES MANQUANTES AJOUTÉES
+      {
+        'title': 'Bouillie de riz',
+        'ageGroup': '6-8 mois',
+        'imageUrl': 'assets/images/16m.png',
+        'ingredients': ['Farine de riz', 'Beurre', 'Lait', 'Eau'],
+        'materials': ['Bol', 'Casserole'],
+        'instructions': [
+          'Diluez la farine de riz dans l\'eau, en écrasant les grumeaux.',
+          'Versez dans une casserole et portez à ébullition pendant 5 à 8 minutes en mélangeant jusqu\'à épaississement.',
+          'Retirez du feu, ajoutez le beurre et le lait, puis mélangez.'
+        ],
+        'description': 'Une délicieuse et simple recette à base de riz pour bébé.',
+        'prepTime': 5,
+        'cookTime': 8,
+        'texture': 'Bouillie',
+        'difficulty': 'Facile',
+        'allergens': ['Lait'],
+        'nutrition': {'calories': 140, 'carbs': 22, 'protein': 3, 'fat': 4},
+      },
+      {
+        'title': 'Compote mangue – chat noir',
+        'ageGroup': '6-8 mois',
+        'imageUrl': 'assets/images/22m.png',
+        'ingredients': ['Mangue', 'Tamarin noir', 'Eau'],
+        'materials': ['Couteau', 'Casserole', 'Mixeur'],
+        'instructions': [
+          'Décortiquez les "chats noirs" (tamarin) et trempez-les dans l\'eau chaude pendant 1 minute.',
+          'Mélangez pour recueillir le jus, puis filtrez.',
+          'Épluchez et coupez la mangue en morceaux.',
+          'Faites cuire la mangue avec le jus de tamarin à feu doux pendant 10-15 minutes.',
+          'Mixez pour obtenir un mélange lisse.'
+        ],
+        'description': 'Une compote avec un goût acidulé qui éveille les papilles de bébé.',
+        'prepTime': 15,
+        'cookTime': 15,
+        'texture': 'Purée',
+        'difficulty': 'Facile',
+        'allergens': [],
+        'nutrition': {'calories': 90, 'carbs': 22, 'protein': 1, 'fat': 0.5},
+      },
+      {
+        'title': 'Purée de riz - carotte',
+        'ageGroup': '8-12 mois',
+        'imageUrl': 'assets/images/07a.png',
+        'ingredients': ['Riz', 'Carotte', 'Beurre'],
+        'materials': ['Couteau', 'Casserole', 'Mixeur'],
+        'instructions': [
+          'Lavez le riz. Épluchez et coupez la carotte en petits dés.',
+          'Mettez le riz et la carotte dans une casserole avec 350 ml d’eau et portez à ébullition.',
+          'Laissez bien cuire, puis écrasez à la fourchette ou mixez.',
+          'Ajoutez le beurre et mélangez avant de servir.'
+        ],
+        'description': 'Une délicieuse purée de riz à la carotte pour bébé.',
+        'prepTime': 10,
+        'cookTime': 20,
+        'texture': 'Mixte',
+        'difficulty': 'Facile',
+        'allergens': ['Lait'],
+        'nutrition': {'calories': 150, 'carbs': 25, 'protein': 3, 'fat': 4},
+      },
+      {
+        'title': 'Purée de riz - carotte – poulet - ciboulette',
+        'ageGroup': '9-12 mois',
+        'imageUrl': 'assets/images/08a.png',
+        'ingredients': ['Riz', 'Carotte', 'Poulet', 'Ciboulette', 'Huile végétale', 'Sel', 'Poivre', 'Eau'],
+        'materials': ['Couteau', 'Casserole'],
+        'instructions': [
+          'Coupez la carotte, la ciboulette et le poulet.',
+          'Faites dorer le poulet dans l\'huile, puis ajoutez la carotte et la ciboulette.',
+          'Ajoutez le riz, mélangez jusqu\'à ce qu\'il soit translucide, puis ajoutez l\'eau.',
+          'Laissez mijoter à feu doux jusqu\'à ce que le riz soit pâteux.'
+        ],
+        'description': 'Un plat complet et savoureux pour les bébés plus grands.',
+        'prepTime': 15,
+        'cookTime': 25,
+        'texture': 'Morceaux',
+        'difficulty': 'Moyen',
+        'allergens': [],
+        'nutrition': {'calories': 210, 'carbs': 28, 'protein': 12, 'fat': 5},
+      },
+      {
+        'title': 'Petites pâtes en sauce tomate',
+        'ageGroup': '9-12 mois',
+        'imageUrl': 'assets/images/10a.png',
+        'ingredients': ['Pâtes', 'Tomates', 'Echalotte', 'Huile végétale'],
+        'materials': ['Couteau', 'Casserole'],
+        'instructions': [
+          'Faites cuire les pâtes. Faites cuire les tomates et réduisez-les en coulis.',
+          'Faites revenir l\'échalote dans l\'huile, ajoutez le coulis de tomate et laissez mijoter.',
+          'Ajoutez les pâtes égouttées et mélangez.'
+        ],
+        'description': 'Une belle découverte que nos petits aimeront à coup sûr.',
+        'prepTime': 10,
+        'cookTime': 15,
+        'texture': 'Morceaux',
+        'difficulty': 'Facile',
+        'allergens': ['Gluten'],
+        'nutrition': {'calories': 180, 'carbs': 30, 'protein': 5, 'fat': 4},
+      },
+      {
+        'title': 'Bouillie au tapioca – lait de coco et mangue',
+        'ageGroup': '8-12 mois',
+        'imageUrl': 'assets/images/11a.png',
+        'ingredients': ['Lait de coco', 'Tapioca', 'Compote de mangue', 'Eau'],
+        'materials': ['Casserole'],
+        'instructions': [
+          'Faites bouillir l\'eau et ajoutez le tapioca. Cuire 5 minutes jusqu\'à ce qu\'il soit translucide.',
+          'Ajoutez le lait de coco et laissez la bouillie s\'épaissir en mélangeant.',
+          'Incorporez la compote de mangue et retirez du feu.'
+        ],
+        'description': 'Une bouillie exotique et douce pour le plaisir de bébé.',
+        'prepTime': 5,
+        'cookTime': 10,
+        'texture': 'Bouillie',
+        'difficulty': 'Facile',
+        'allergens': [],
+        'nutrition': {'calories': 220, 'carbs': 35, 'protein': 3, 'fat': 8},
+      },
+      {
+        'title': 'Mouliné de carotte – pomme de terre et semoule de blé',
+        'ageGroup': '8-12 mois',
+        'imageUrl': 'assets/images/12a.png',
+        'ingredients': ['Carotte', 'Pomme de terre', 'Semoule de blé', 'Lait'],
+        'materials': ['Casserole', 'Mixeur'],
+        'instructions': [
+          'Faites cuire la semoule de blé selon les instructions et réservez.',
+          'Faites cuire la carotte et la pomme de terre à la vapeur pendant 10-15 minutes.',
+          'Mixez les légumes avec la semoule, le lait et un peu d\'eau de cuisson pour obtenir la texture désirée.'
+        ],
+        'description': 'Un délicieux mouliné pour le dîner de bébé.',
+        'prepTime': 15,
+        'cookTime': 15,
+        'texture': 'Mixte',
+        'difficulty': 'Moyen',
+        'allergens': ['Gluten', 'Lait'],
+        'nutrition': {'calories': 170, 'carbs': 28, 'protein': 5, 'fat': 4},
+      },
+      {
+        'title': 'Vermicelles au lait',
+        'ageGroup': '8-12 mois',
+        'imageUrl': 'assets/images/13a.png',
+        'ingredients': ['Vermicelles', 'Lait', 'Eau'],
+        'materials': ['Casserole'],
+        'instructions': [
+          'Faites bouillir l\'eau, ajoutez les vermicelles et laissez cuire 10 minutes.',
+          'Retirez du feu, ajoutez le lait et mélangez bien avant de servir.'
+        ],
+        'description': 'Les vermicelles ne se mangent pas que salés ! Une douceur pour toute la famille.',
+        'prepTime': 5,
+        'cookTime': 10,
+        'texture': 'Mixte',
+        'difficulty': 'Facile',
+        'allergens': ['Gluten', 'Lait'],
+        'nutrition': {'calories': 160, 'carbs': 25, 'protein': 6, 'fat': 4},
+      },
+      {
+        'title': 'Petites pâtes au fromages et persil',
+        'ageGroup': '9-12 mois',
+        'imageUrl': 'assets/images/pates_fromage.png',
+        'ingredients': ['Pâtes', 'Beurre', 'Fromage', 'Persil', 'Sel'],
+        'materials': ['Casserole'],
+        'instructions': [
+          'Faites cuire les pâtes jusqu\'à ce qu\'elles soient fondantes. Égouttez.',
+          'Remettez-les dans la casserole sur feu doux.',
+          'Ajoutez le beurre, le sel, le fromage et le persil haché.',
+          'Remuez jusqu\'à ce que le fromage fonde et servez.'
+        ],
+        'description': 'Miam Miam ! Des pâtes au fromage pour le plaisir de bébé.',
+        'prepTime': 10,
+        'cookTime': 10,
+        'texture': 'Morceaux',
+        'difficulty': 'Facile',
+        'allergens': ['Gluten', 'Lait'],
+        'nutrition': {'calories': 220, 'carbs': 28, 'protein': 8, 'fat': 8},
+      },
+      {
+        'title': 'Bouillie d’avoine – œuf',
+        'ageGroup': '8-12 mois',
+        'imageUrl': 'assets/images/04a.png',
+        'ingredients': ['Œuf', 'Flocons d\'avoine', 'Eau', 'Lait'],
+        'materials': ['Casserole'],
+        'instructions': [
+          'Faites cuire les flocons d\'avoine dans l\'eau pendant 7-10 minutes.',
+          'Cassez l\'œuf et ajoutez-le directement à la bouillie sur le feu.',
+          'Mélangez vigoureusement pour incorporer l\'œuf et laissez cuire une minute de plus.',
+          'Servez avec le lait.'
+        ],
+        'description': 'Une bouillie riche qui fera prendre du poids à bébé.',
+        'prepTime': 5,
+        'cookTime': 12,
+        'texture': 'Bouillie',
+        'difficulty': 'Facile',
+        'allergens': ['Œuf', 'Lait'],
+        'nutrition': {'calories': 200, 'carbs': 22, 'protein': 10, 'fat': 8},
       },
     ];
 
