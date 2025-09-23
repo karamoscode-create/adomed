@@ -10,13 +10,33 @@ workflows:
         - code_signing # Fait le lien avec vos certificats de l'interface
 
     scripts:
-      - name: Get Flutter packages
+      - name: Get Flutter dependencies
         script: | 
-          flutter packages pub get
+          flutter clean
+          flutter pub get
+          
+      - name: Generate iOS build files
+        script: |
+          # Force la génération des fichiers de configuration iOS
+          flutter build ios --config-only --no-codesign
+          
+      - name: Verify generated files
+        script: |
+          echo "Vérification des fichiers générés:"
+          ls -la ios/Flutter/
+          if [ ! -f "ios/Flutter/Generated.xcconfig" ]; then
+            echo "❌ Generated.xcconfig manquant"
+            exit 1
+          else
+            echo "✅ Generated.xcconfig trouvé"
+            cat ios/Flutter/Generated.xcconfig
+          fi
+          
       - name: Install pods
         script: | 
           cd ios
           pod install --repo-update
+          
       - name: Build IPA
         script: | 
           flutter build ipa --release --flavor ios-production
