@@ -219,7 +219,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
     // Petit Matériel (Produits déjà dans le code)
     Product(id: 'prod39', name: 'Toise enfant en bois', description: '', price: 20000, imageUrl: 'assets/images/marketplace/Toise enfant en bois.png', category: 'Matériel Médical'),
     Product(id: 'prod40', name: 'Garrot plastique', description: '', price: 4000, imageUrl: 'assets/images/marketplace/Garrot plastique.png', category: 'Consommables Médicaux'),
-    Product(id: 'prod41', name: 'Tube rouge pqt/100', description: '', price: 7000, imageUrl: 'assets/images/marketplace/Tube/100.png', category: 'Consommables Médicaux'),
+    Product(id: 'prod41', name: 'Tube rouge pqt/100', description: '', price: 7000, imageUrl: 'assets/images/marketplace/Tube100.png', category: 'Consommables Médicaux'),
 
     // Mobilier Médical (Produits déjà dans le code)
     Product(id: 'prod42', name: 'Escabot à 2 marches (local)', description: '', price: 35000, imageUrl: 'assets/images/marketplace/Escabot.png', category: 'Orthopédie & Mobilité'),
