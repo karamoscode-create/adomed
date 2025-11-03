@@ -1,3 +1,4 @@
+$FirebaseSDKVersion = '10.18.0'
 # Uncomment this line to define a global platform for your project
 platform :ios, '13.0'
 
@@ -29,8 +30,24 @@ flutter_ios_podfile_setup
 
 target 'Runner' do
   use_frameworks!
-
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+
+  # === AJOUT POUR FORCER LES VERSIONS DE SOUS-DÉPENDANCES ===
+  pod 'Firebase/Core', $FirebaseSDKVersion
+  pod 'Firebase/Auth', $FirebaseSDKVersion
+  pod 'Firebase/Firestore', $FirebaseSDKVersion
+  pod 'Firebase/Storage', $FirebaseSDKVersion
+  pod 'Firebase/Messaging', $FirebaseSDKVersion
+  pod 'Firebase/AppCheck', $FirebaseSDKVersion
+  
+  pod 'FirebaseAuthInterop', $FirebaseSDKVersion
+  pod 'FirebaseAppCheckInterop', $FirebaseSDKVersion
+  pod 'FirebaseCoreExtension', $FirebaseSDKVersion
+  pod 'FirebaseCoreInternal', $FirebaseSDKVersion
+  pod 'FirebaseInstallations', $FirebaseSDKVersion
+  pod 'FirebaseSharedSwift', $FirebaseSDKVersion
+  # === FIN DE L'AJOUT ===
+
   target 'RunnerTests' do
     inherit! :search_paths
   end

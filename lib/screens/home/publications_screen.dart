@@ -133,9 +133,11 @@ class _PostCardState extends State<_PostCard> {
     if (widget.post['type'] == 'video' && widget.post['videoUrl'] != null) {
       _controller = VideoPlayerController.networkUrl(Uri.parse(widget.post['videoUrl']))
         ..initialize().then((_) {
-          setState(() {
-            _isInitialized = true;
-          });
+          if (mounted) {
+            setState(() {
+              _isInitialized = true;
+            });
+          }
         }).catchError((error) {
           debugPrint("Erreur de chargement de la vidéo: $error");
         });
@@ -248,6 +250,7 @@ class _PostCardState extends State<_PostCard> {
           initialText: widget.post['text'],
           initialImageUrl: widget.post['imageUrl'],
           initialVideoUrl: widget.post['videoUrl'],
+          initialSource: widget.post['source'], // <-- CHAMP AJOUTÉ
         ),
       ),
     );
@@ -323,6 +326,21 @@ class _PostCardState extends State<_PostCard> {
               post['text'] ?? '',
               style: TextStyle(fontSize: 15, color: AppColors.textPrimary),
             ),
+            
+            // --- CHAMP SOURCE AJOUTÉ ---
+            if (post['source'] != null && post['source'].isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text(
+                'Source : ${post['source']}',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontStyle: FontStyle.italic,
+                  color: AppColors.textSecondary,
+                ),
+              ),
+            ],
+            // --- FIN DE L'AJOUT ---
+
             if (post['imageUrl'] != null && post['imageUrl'].isNotEmpty) ...[
               const SizedBox(height: 12),
               ClipRRect(

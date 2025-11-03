@@ -15,6 +15,7 @@ class CreatePostScreen extends StatefulWidget {
   final String? initialText;
   final String? initialImageUrl;
   final String? initialVideoUrl;
+  final String? initialSource; // CHAMP AJOUTÉ
   final String? repostText;
   final String? repostImageUrl;
   final String? repostVideoUrl;
@@ -26,6 +27,7 @@ class CreatePostScreen extends StatefulWidget {
     this.initialText,
     this.initialImageUrl,
     this.initialVideoUrl,
+    this.initialSource, // CHAMP AJOUTÉ
     this.repostText,
     this.repostImageUrl,
     this.repostVideoUrl,
@@ -38,6 +40,7 @@ class CreatePostScreen extends StatefulWidget {
 
 class _CreatePostScreenState extends State<CreatePostScreen> {
   late TextEditingController _contentController;
+  late TextEditingController _sourceController; // CHAMP AJOUTÉ
   File? _selectedFile;
   String? _fileType;
   bool _isLoading = false;
@@ -45,8 +48,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   @override
   void initState() {
     super.initState();
-    // Utiliser le texte de repost si c'est un repost, sinon le texte initial ou vide
     _contentController = TextEditingController(text: widget.repostText ?? widget.initialText ?? '');
+    _sourceController = TextEditingController(text: widget.initialSource ?? ''); // CHAMP AJOUTÉ
 
     if (widget.repostImageUrl != null || widget.initialImageUrl != null) {
       _fileType = 'image';
@@ -55,22 +58,32 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     }
   }
 
+  // =================== VOICI LA MODIFICATION ===================
+  // J'ai rendu la vérification de "path" plus explicite
+  // pour forcer l'analyseur de votre IDE à la valider.
   Future<void> _pickFile(ImageSource source, {bool isVideo = false}) async {
     final picker = ImagePicker();
     XFile? pickedFile;
+
     if (isVideo) {
       pickedFile = await picker.pickVideo(source: source);
     } else {
       pickedFile = await picker.pickImage(source: source);
     }
 
+    // On vérifie si pickedFile n'est pas nul avant de continuer
     if (pickedFile != null) {
+      // On assigne le chemin à une variable locale non-nulle
+      final String localPath = pickedFile.path;
+      
+      // On utilise cette variable locale
       setState(() {
-        _selectedFile = File(pickedFile!.path);
+        _selectedFile = File(localPath);
         _fileType = isVideo ? 'video' : 'image';
       });
     }
   }
+  // ================= FIN DE LA MODIFICATION ==================
 
   Future<String?> _uploadFile(File file, String userId, String fileType) async {
     try {
@@ -124,7 +137,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       String? thumbnailUrl;
       String? finalImageUrl = widget.initialImageUrl ?? widget.repostImageUrl;
       String? finalVideoUrl = widget.initialVideoUrl ?? widget.repostVideoUrl;
-      String? finalFileType = _fileType;
 
       if (_selectedFile != null) {
         fileUrl = await _uploadFile(_selectedFile!, currentUser.uid, _fileType!);
@@ -152,19 +164,28 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
       final userDoc = await FirebaseFirestore.instance.collection('users').doc(currentUser.uid).get();
       final userName = userDoc.data()?['firstName'] ?? 'Anonyme';
-      
+      final userPhotoUrl = userDoc.data()?['photoUrl'] ?? '';
+      final String sourceText = _sourceController.text.trim();
+
+      // --- BLOC DE CORRECTION MAJEURE ---
+      // Utilise les bons noms de champs (`text`, `imageUrl`, etc.)
+      // que `publications_screen.dart` s'attend à lire.
       final Map<String, dynamic> postData = {
-        'uid': currentUser.uid,
+        'authorId': currentUser.uid,
         'authorName': userName,
-        'specialty': 'Utilisateur',
-        'isAnonymous': false,
-        'content': _contentController.text,
-        'postImageUrl': finalImageUrl,
-        'postVideoUrl': finalVideoUrl,
+        'authorPhotoUrl': userPhotoUrl,
+        'text': _contentController.text,
+        'imageUrl': finalImageUrl,
+        'videoUrl': finalVideoUrl,
+        'type': finalVideoUrl != null ? 'video' : (finalImageUrl != null ? 'image' : 'text'),
+        if (sourceText.isNotEmpty) 'source': sourceText, // CHAMP AJOUTÉ
         if (thumbnailUrl != null) 'thumbnailUrl': thumbnailUrl,
       };
+      // --- FIN DU BLOC DE CORRECTION ---
+
 
       if (widget.postToEditId != null) {
+        // En mode édition, on ne met à jour que les données
         await FirebaseFirestore.instance.collection('posts').doc(widget.postToEditId).update(postData);
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -172,9 +193,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           );
         }
       } else {
-        postData['createdAt'] = FieldValue.serverTimestamp();
+        // En mode création, on ajoute les champs initiaux
+        postData['timestamp'] = FieldValue.serverTimestamp();
         postData['likes'] = 0;
-        postData['comments'] = 0;
+        postData['commentsCount'] = 0;
         postData['views'] = 0;
         await FirebaseFirestore.instance.collection('posts').add(postData);
         if (mounted) {
@@ -213,6 +235,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     }
 
     if (link != null) {
+      // CORRECTION : L'import 'package:flutter/services.dart' résout ces erreurs
       Clipboard.setData(ClipboardData(text: link));
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Lien copié dans le presse-papier !')),
@@ -223,6 +246,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   @override
   void dispose() {
     _contentController.dispose();
+    _sourceController.dispose(); // CHAMP AJOUTÉ
     super.dispose();
   }
 
@@ -264,6 +288,21 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 border: InputBorder.none,
               ),
             ),
+            
+            // --- CHAMP SOURCE AJOUTÉ ---
+            const Divider(thickness: 1),
+            TextField(
+              controller: _sourceController,
+              decoration: InputDecoration(
+                hintText: 'Source (ex: OMS, www.sante.gouv...)',
+                // CORRECTION : Remplacement de .textHintColor par .textHint
+                hintStyle: TextStyle(color: AppColors.textHint, fontStyle: FontStyle.italic),
+                border: InputBorder.none,
+              ),
+            ),
+            const Divider(thickness: 1),
+            // --- FIN DE L'AJOUT ---
+
             if (_selectedFile != null)
               Container(
                 margin: const EdgeInsets.only(top: 16),
@@ -278,6 +317,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
               )
             else if (isReposting && widget.repostVideoUrl != null)
               Container(
+                // CORRECTION : Remplacement de : par .
                 margin: const EdgeInsets.only(top: 16),
                 child: Text(
                   'Vidéo originale',
@@ -291,6 +331,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
               )
             else if (isEditing && widget.initialVideoUrl != null)
               Container(
+                // CORRECTION : Remplacement de : par .
                 margin: const EdgeInsets.only(top: 16),
                 child: Text(
                   'Vidéo originale',

@@ -25,13 +25,15 @@ dependencies:
   shared_preferences: ^2.2.3
   dots_indicator: ^4.0.1
 
-  # Firebase (Versions récentes)
-  firebase_core: ^3.1.0
-  firebase_auth: ^5.1.1
-  cloud_firestore: ^5.0.1
-  firebase_messaging: ^15.0.1
-  firebase_storage: ^12.1.0
-  firebase_app_check: ^0.3.0
+  # =========== BLOC CORRIGÉ CI-DESSOUS ===========
+  # Firebase (Versions compatibles avec Xcode 14/Ventura)
+  firebase_core: 2.24.2
+  firebase_auth: 4.16.0
+  cloud_firestore: 4.14.0
+  firebase_messaging: 14.7.10
+  firebase_storage: 11.6.0
+  firebase_app_check: 0.2.1+8
+  # ===============================================
 
   # Utilitaires (mis à jour)
   flutter_dotenv: ^5.1.0
