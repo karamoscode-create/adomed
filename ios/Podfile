@@ -53,8 +53,16 @@ target 'Runner' do
   end
 end
 
+# =========== BLOC CORRIGÉ CI-DESSOUS ===========
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
+    
+    # === AJOUT POUR CORRIGER L'ERREUR '-G' ===
+    # Force le déploiement sur iOS 13.0 (ou plus)
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+    end
+    # === FIN DE L'AJOUT ===
   end
 end
