@@ -67,3 +67,4 @@ post_install do |installer|
     end
   end
 end
+# Modification forcée pour mise à jour Git
