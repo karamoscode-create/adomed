@@ -53,7 +53,7 @@ target 'Runner' do
   end
 end
 
-# =========== BLOC CORRIGÉ ET RENFORCÉ ===========
+# =========== BLOC CORRIGÉ CI-DESSOUS ===========
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
@@ -62,9 +62,12 @@ post_install do |installer|
       # Force le déploiement sur iOS 13.0
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
       
-      # Force le format moderne et désactive l'option obsolète -G
+      # Force le format moderne
       config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
+      
+      # DÉSACTIVE L'OPTION QUI CAUSE L'ERREUR -G
       config.build_settings['GCC_GENERATE_DEBUGGING_SYMBOLS'] = 'NO'
     end
   end
 end
+# Version Finale Pods Fix
