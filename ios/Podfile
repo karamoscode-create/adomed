@@ -53,21 +53,48 @@ target 'Runner' do
   end
 end
 
-# =========== BLOC CORRIGÉ CI-DESSOUS ===========
+# =========== BLOC post_install : nettoyage des flags -G ===========
 post_install do |installer|
+  # permet d'accéder aux helpers de manipulation Xcode
+  require 'xcodeproj'
+
+  # 1) Appliquer les réglages additionnels Flutter et forcer quelques settings utiles,
+  #    puis nettoyer les flags commençant par -G dans les OTHER_* build settings.
   installer.pods_project.targets.each do |target|
-    flutter_additional_ios_build_settings(target)
-    
+    # conserve les réglages additionnels fournis par Flutter
+    begin
+      flutter_additional_ios_build_settings(target)
+    rescue => e
+      # si flutter_additional_ios_build_settings n'existe pas pour une raison,
+      # on continue l'exécution pour ne pas casser l'installation des pods.
+      puts "Warning: flutter_additional_ios_build_settings failed for target #{target.name}: #{e}"
+    end
+
     target.build_configurations.each do |config|
-      # Force le déploiement sur iOS 13.0
+      # Force le déploiement sur iOS 13.0 si nécessaire
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
-      
-      # Force le format moderne
+
+      # Format d'information de debug moderne
       config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
-      
-      # DÉSACTIVE L'OPTION QUI CAUSE L'ERREUR -G
-      config.build_settings['GCC_GENERATE_DEBUGGING_SYMBOLS'] = 'NO'
+
+      # Nettoyage des flags potentiellement problématiques commençant par -G (ex: -GCC_WARN_INHIBIT_ALL_WARNINGS)
+      %w(OTHER_LDFLAGS OTHER_CFLAGS OTHER_SWIFT_FLAGS).each do |key|
+        next unless config.build_settings[key]
+        cleaned = config.build_settings[key].to_s.gsub(/-G[A-Z0-9_]+/, ' ').squeeze(' ').strip
+        config.build_settings[key] = cleaned
+      end
     end
   end
+
+  # 2) Nettoie aussi les COMPILER_FLAGS attachés aux PBXBuildFile (cas observé dans Pods.xcodeproj)
+  installer.pods_project.files.each do |file|
+    next unless file.isa == 'PBXBuildFile'
+    settings = file.settings
+    next unless settings && settings['COMPILER_FLAGS']
+    settings['COMPILER_FLAGS'] = settings['COMPILER_FLAGS'].to_s.gsub(/-G[A-Z0-9_]+/, ' ').squeeze(' ').strip
+  end
+
+  # 3) Sauvegarde les modifications dans le projet Pods
+  installer.pods_project.save
 end
-# Version Finale Pods Fix
+# =========== FIN post_install ===========
