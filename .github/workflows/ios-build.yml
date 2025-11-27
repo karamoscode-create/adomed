@@ -22,7 +22,7 @@ jobs:
           rm -f ios/Podfile.lock
           flutter clean
 
-      # ÉTAPE CLÉ : On écrase le Podfile existant avec une version garantie 100% propre et compatible Xcode 16
+      # ÉTAPE CLÉ : On recrée le Podfile avec une version de Firebase compatible Xcode 16 (11.4.0)
       - name: Force Recreate Podfile
         run: |
           cat <<EOF > ios/Podfile
@@ -55,13 +55,13 @@ jobs:
             use_frameworks!
             flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
             
-            # Dépendances Firebase forcées en version 10.18.0
-            pod 'Firebase/Core', '10.18.0'
-            pod 'Firebase/Auth', '10.18.0'
-            pod 'Firebase/Firestore', '10.18.0'
-            pod 'Firebase/Storage', '10.18.0'
-            pod 'Firebase/Messaging', '10.18.0'
-            pod 'Firebase/AppCheck', '10.18.0'
+            # MISE À JOUR : On passe à Firebase 11.4.0 pour la compatibilité Xcode 16
+            pod 'Firebase/Core', '11.4.0'
+            pod 'Firebase/Auth', '11.4.0'
+            pod 'Firebase/Firestore', '11.4.0'
+            pod 'Firebase/Storage', '11.4.0'
+            pod 'Firebase/Messaging', '11.4.0'
+            pod 'Firebase/AppCheck', '11.4.0'
           end
           
           # Patch Xcode 16 (Désactivation du stripping pour éviter l'erreur -G)
