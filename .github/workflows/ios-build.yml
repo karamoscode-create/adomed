@@ -2,7 +2,7 @@ name: Build iOS IPA
 on: workflow_dispatch
 jobs:
   build_ios:
-    runs-on: macos-15 # Xcode 16 / iOS 18 (Obligatoire pour App Store)
+    runs-on: macos-15 # Xcode 16 / iOS 18
     steps:
       - uses: actions/checkout@v4
       
@@ -22,7 +22,7 @@ jobs:
           rm -f ios/Podfile.lock
           flutter clean
 
-      # ÉTAPE CRITIQUE : Génération du Podfile compatible Xcode 16 & iOS 15
+      # ÉTAPE CLÉ : On génère un Podfile parfait qui inclut TOUS les correctifs (Version + Stripping)
       - name: Force Recreate Podfile
         run: |
           cat <<EOF > ios/Podfile
@@ -57,6 +57,7 @@ jobs:
             flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
             
             # Versions Firebase récentes (11.4.0) pour Xcode 16
+            # Cela doit correspondre à ton pubspec.yaml
             pod 'Firebase/Core', '11.4.0'
             pod 'Firebase/Auth', '11.4.0'
             pod 'Firebase/Firestore', '11.4.0'
@@ -65,15 +66,15 @@ jobs:
             pod 'Firebase/AppCheck', '11.4.0'
           end
           
-          # Patch Xcode 16 : Désactivation du stripping et forçage de la version iOS
+          # LE PATCH CRITIQUE POUR XCODE 16 (Erreur -G)
           post_install do |installer|
             installer.pods_project.targets.each do |target|
               flutter_additional_ios_build_settings(target)
               target.build_configurations.each do |config|
-                # FORCE IOS 15.0 SUR TOUS LES PODS (Correction de l'erreur Firebase)
+                # Forcer la cible de déploiement
                 config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
                 
-                # Désactiver le stripping (Correction erreur -G)
+                # DÉSACTIVER LE STRIPPING (La solution au problème -G)
                 config.build_settings['STRIP_INSTALLED_PRODUCT'] = 'NO'
                 config.build_settings['COPY_PHASE_STRIP'] = 'NO'
                 config.build_settings['ENABLE_BITCODE'] = 'NO'
@@ -119,7 +120,7 @@ jobs:
           sed -i '' 's/PROVISIONING_PROFILE_SPECIFIER = "";/PROVISIONING_PROFILE_SPECIFIER = "Adomed App Store Distribution";/g' ios/Runner.xcodeproj/project.pbxproj
           sed -i '' 's/DEVELOPMENT_TEAM = "";/DEVELOPMENT_TEAM = "P534537N35";/g' ios/Runner.xcodeproj/project.pbxproj
           
-          # 2. Mise à jour cible iOS 15.0 dans le projet
+          # 2. Mise à jour cible iOS 15.0 dans le projet aussi
           sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = [0-9.]*;/IPHONEOS_DEPLOYMENT_TARGET = 15.0;/g' ios/Runner.xcodeproj/project.pbxproj
           
           # 3. Double sécurité anti-stripping
