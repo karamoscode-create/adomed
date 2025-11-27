@@ -2,7 +2,7 @@ name: Build iOS IPA
 on: workflow_dispatch
 jobs:
   build_ios:
-    runs-on: macos-15 # Obligatoire pour iOS 18
+    runs-on: macos-15 # Xcode 16 / iOS 18
     steps:
       - uses: actions/checkout@v4
       
@@ -25,20 +25,7 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # PATCH PODFILE : On injecte un script qui désactive le stripping pour toutes les dépendances
-      - name: Patch Podfile for Xcode 16
-        run: |
-          # On ajoute un bloc post_install à la fin du Podfile
-          echo "" >> ios/Podfile
-          echo "post_install do |installer|" >> ios/Podfile
-          echo "  installer.pods_project.targets.each do |target|" >> ios/Podfile
-          echo "    target.build_configurations.each do |config|" >> ios/Podfile
-          echo "      config.build_settings['STRIP_INSTALLED_PRODUCT'] = 'NO'" >> ios/Podfile
-          echo "      config.build_settings['COPY_PHASE_STRIP'] = 'NO'" >> ios/Podfile
-          echo "      config.build_settings['ENABLE_BITCODE'] = 'NO'" >> ios/Podfile
-          echo "    end" >> ios/Podfile
-          echo "  end" >> ios/Podfile
-          echo "end" >> ios/Podfile
+      # J'ai SUPPRIMÉ l'étape "Patch Podfile" car ton fichier est déjà corrigé sur GitHub !
 
       - name: Install Apple Certificate and Profile
         env:
@@ -64,7 +51,7 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles/
 
-      # Configuration du projet principal (Runner)
+      # On garde la configuration du projet principal (Runner) pour être sûr
       - name: Configure Xcode Project
         run: |
           # 1. Force Manual Signing
@@ -74,7 +61,7 @@ jobs:
           sed -i '' 's/PROVISIONING_PROFILE_SPECIFIER = "";/PROVISIONING_PROFILE_SPECIFIER = "Adomed App Store Distribution";/g' ios/Runner.xcodeproj/project.pbxproj
           sed -i '' 's/DEVELOPMENT_TEAM = "";/DEVELOPMENT_TEAM = "P534537N35";/g' ios/Runner.xcodeproj/project.pbxproj
           
-          # 2. Disable Stripping for Runner
+          # 2. Disable Stripping for Runner (Safety net)
           echo "" >> ios/Flutter/Release.xcconfig
           echo "STRIP_INSTALLED_PRODUCT = NO" >> ios/Flutter/Release.xcconfig
           echo "COPY_PHASE_STRIP = NO" >> ios/Flutter/Release.xcconfig
