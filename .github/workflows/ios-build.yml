@@ -2,7 +2,7 @@ name: Build iOS IPA
 on: workflow_dispatch
 jobs:
   build_ios:
-    runs-on: macos-14
+    runs-on: macos-15 # MISE À JOUR ICI : On passe à macOS 15 pour avoir Xcode 16 / iOS 18
     steps:
       - uses: actions/checkout@v4
       
@@ -43,21 +43,15 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles/
 
-      # NOUVEAU : On force la configuration du projet en mode Manuel via script
+      # On garde le forçage manuel qui fonctionnait bien
       - name: Force Manual Signing in Xcode Project
         run: |
-          # Désactiver la signature automatique
           sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' ios/Runner.xcodeproj/project.pbxproj
-          
-          # Remplacer l'identité "Developer" par "Distribution"
           sed -i '' 's/CODE_SIGN_IDENTITY = "iPhone Developer";/CODE_SIGN_IDENTITY = "Apple Distribution";/g' ios/Runner.xcodeproj/project.pbxproj
           sed -i '' 's/CODE_SIGN_IDENTITY = "Apple Development";/CODE_SIGN_IDENTITY = "Apple Distribution";/g' ios/Runner.xcodeproj/project.pbxproj
-          
-          # Injecter le profil et l'équipe (si les champs sont vides par défaut)
           sed -i '' 's/PROVISIONING_PROFILE_SPECIFIER = "";/PROVISIONING_PROFILE_SPECIFIER = "Adomed App Store Distribution";/g' ios/Runner.xcodeproj/project.pbxproj
           sed -i '' 's/DEVELOPMENT_TEAM = "";/DEVELOPMENT_TEAM = "P534537N35";/g' ios/Runner.xcodeproj/project.pbxproj
 
-      # COMMANDE SIMPLIFIÉE : Plus d'arguments bizarres, le projet est déjà configuré par l'étape précédente
       - name: Build IPA
         run: |
           flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
