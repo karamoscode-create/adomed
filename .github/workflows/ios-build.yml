@@ -16,7 +16,6 @@ jobs:
         with:
           channel: 'stable'
 
-      # NOUVEAU : On nettoie les Pods pour éviter les conflits de version avec Xcode 16
       - name: Clean Pods
         run: |
           rm -rf ios/Pods
@@ -49,19 +48,23 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles/
 
-      # MISE À JOUR : On désactive aussi le stripping pour éviter l'erreur "-G"
-      - name: Configure Xcode Project (Manual Signing & No Strip)
+      # SOLUTION SÉRIEUSE : On injecte la config directement dans le fichier xcconfig
+      # Cela écrase toutes les valeurs par défaut de Xcode.
+      - name: Configure Xcode Project (Force Settings)
         run: |
-          # 1. Forcer la signature manuelle
+          # 1. Signature Manuelle (Toujours via sed car c'est structurel)
           sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' ios/Runner.xcodeproj/project.pbxproj
           sed -i '' 's/CODE_SIGN_IDENTITY = "iPhone Developer";/CODE_SIGN_IDENTITY = "Apple Distribution";/g' ios/Runner.xcodeproj/project.pbxproj
           sed -i '' 's/CODE_SIGN_IDENTITY = "Apple Development";/CODE_SIGN_IDENTITY = "Apple Distribution";/g' ios/Runner.xcodeproj/project.pbxproj
           sed -i '' 's/PROVISIONING_PROFILE_SPECIFIER = "";/PROVISIONING_PROFILE_SPECIFIER = "Adomed App Store Distribution";/g' ios/Runner.xcodeproj/project.pbxproj
           sed -i '' 's/DEVELOPMENT_TEAM = "";/DEVELOPMENT_TEAM = "P534537N35";/g' ios/Runner.xcodeproj/project.pbxproj
           
-          # 2. Désactiver le stripping (Contourne l'erreur -G de Xcode 16)
-          sed -i '' 's/STRIP_INSTALLED_PRODUCT = YES;/STRIP_INSTALLED_PRODUCT = NO;/g' ios/Runner.xcodeproj/project.pbxproj
-          sed -i '' 's/COPY_PHASE_STRIP = YES;/COPY_PHASE_STRIP = NO;/g' ios/Runner.xcodeproj/project.pbxproj
+          # 2. Désactiver le stripping (Méthode d'injection directe)
+          # On écrit ces règles à la fin du fichier de config Release de Flutter
+          echo "" >> ios/Flutter/Release.xcconfig
+          echo "STRIP_INSTALLED_PRODUCT = NO" >> ios/Flutter/Release.xcconfig
+          echo "COPY_PHASE_STRIP = NO" >> ios/Flutter/Release.xcconfig
+          echo "ENABLE_BITCODE = NO" >> ios/Flutter/Release.xcconfig
 
       - name: Build IPA
         run: |
