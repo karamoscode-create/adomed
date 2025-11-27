@@ -47,5 +47,18 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    
+    <!-- PERMISSIONS AJOUTÉES POUR VALIDER L'APP STORE -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Cette application utilise votre position pour trouver les services de santé et médecins proches de vous.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Cette application utilise votre position pour trouver les services de santé et médecins proches de vous.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Cette application nécessite l'accès à la caméra pour les téléconsultations et l'envoi de documents.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Cette application nécessite l'accès à vos photos pour télécharger des documents médicaux.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Cette application nécessite l'accès au micro pour les appels audio et vidéo avec les praticiens.</string>
+
 </dict>
 </plist>
