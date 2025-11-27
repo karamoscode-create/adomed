@@ -43,10 +43,11 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles/
 
-      # CORRECTION : J'ai remis "ios/" devant le fichier car il est dans le dossier ios
+      # CORRECTION : On a retiré le mot "build-args" qui bloquait tout.
+      # On passe les réglages Xcode directement après les tirets "--"
       - name: Build IPA
         run: |
-          flutter build ipa --release --export-options-plist=ios/ExportOptions.plist -- --build-args CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER="Adomed App Store Distribution" DEVELOPMENT_TEAM="P534537N35" CODE_SIGN_IDENTITY="Apple Distribution"
+          flutter build ipa --release --export-options-plist=ios/ExportOptions.plist -- CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER="Adomed App Store Distribution" DEVELOPMENT_TEAM="P534537N35" CODE_SIGN_IDENTITY="Apple Distribution"
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
