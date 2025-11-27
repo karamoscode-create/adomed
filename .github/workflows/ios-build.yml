@@ -43,11 +43,24 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles/
 
-      # CORRECTION : On a retiré le mot "build-args" qui bloquait tout.
-      # On passe les réglages Xcode directement après les tirets "--"
+      # NOUVEAU : On force la configuration du projet en mode Manuel via script
+      - name: Force Manual Signing in Xcode Project
+        run: |
+          # Désactiver la signature automatique
+          sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' ios/Runner.xcodeproj/project.pbxproj
+          
+          # Remplacer l'identité "Developer" par "Distribution"
+          sed -i '' 's/CODE_SIGN_IDENTITY = "iPhone Developer";/CODE_SIGN_IDENTITY = "Apple Distribution";/g' ios/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/CODE_SIGN_IDENTITY = "Apple Development";/CODE_SIGN_IDENTITY = "Apple Distribution";/g' ios/Runner.xcodeproj/project.pbxproj
+          
+          # Injecter le profil et l'équipe (si les champs sont vides par défaut)
+          sed -i '' 's/PROVISIONING_PROFILE_SPECIFIER = "";/PROVISIONING_PROFILE_SPECIFIER = "Adomed App Store Distribution";/g' ios/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/DEVELOPMENT_TEAM = "";/DEVELOPMENT_TEAM = "P534537N35";/g' ios/Runner.xcodeproj/project.pbxproj
+
+      # COMMANDE SIMPLIFIÉE : Plus d'arguments bizarres, le projet est déjà configuré par l'étape précédente
       - name: Build IPA
         run: |
-          flutter build ipa --release --export-options-plist=ios/ExportOptions.plist -- CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER="Adomed App Store Distribution" DEVELOPMENT_TEAM="P534537N35" CODE_SIGN_IDENTITY="Apple Distribution"
+          flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
