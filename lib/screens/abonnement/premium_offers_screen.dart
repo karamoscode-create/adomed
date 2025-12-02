@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:adomed_app/theme/app_theme.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:iconsax/iconsax.dart';
+// Ajout nécessaire pour ouvrir WhatsApp
+import 'package:url_launcher/url_launcher.dart'; 
 
-// Modèle pour représenter une option de prix
 class PriceOption {
   final String price;
   final String description;
@@ -13,7 +14,6 @@ class PriceOption {
   const PriceOption({required this.price, required this.description});
 }
 
-// Modèle pour représenter une offre d'abonnement complète
 class SubscriptionOffer {
   final String title;
   final String subtitle;
@@ -34,146 +34,109 @@ class SubscriptionOffer {
   });
 }
 
-// --- Données des offres ---
 final List<SubscriptionOffer> premiumOffers = [
-  // --- OFFRES DIGITALES MASQUÉES POUR LA VALIDATION APPLE ---
-  // Cela évite le rejet "3.1.1 In-App Purchase" car nous ne vendons maintenant que des services physiques.
-  /*
+  // --- OFFRES DE SERVICES PHYSIQUES ---
   SubscriptionOffer(
-    title: "Accès Basique",
-    subtitle: "VOTRE ASSISTANT SANTÉ DIGITAL !",
-    imagePath: "assets/images/offers/offre_basique.jpeg",
-    features: [
-      "Accès partiel à l'application Adomed",
-      "1 discussion/mois avec un médecin par messagerie",
-      "Assistant \"DIOKARA\" et blog santé inclus",
-      "Suivi gratuit tension, diabète, obésité",
-      "Interprétation gratuite de vos bilans médicaux",
-    ],
-    closingText: "Parfait pour les petits budgets et les questions santé occasionnelles.",
-    prices: [
-      PriceOption(price: "600 FCFA", description: "/ mois"),
-      PriceOption(price: "5 000 FCFA", description: "/ an"),
-    ],
-    buttonText: "S'ABONNER",
-  ),
-  SubscriptionOffer(
-    title: "Accès Premium",
-    subtitle: "VOTRE COMPAGNON SANTÉ ILLIMITÉ !",
-    imagePath: "assets/images/offers/offre_premium.jpeg",
-    features: [
-      "Accès COMPLET à l'application Adomed",
-      "Discussions ILLIMITÉES avec un médecin",
-      "Agenda et rappels de santé personnalisés",
-      "Tous les avantages du pack basique, mais en illimité !",
-    ],
-    closingText: "Pour ceux qui veulent un accès illimité à un conseil médical de qualité, 24h/24 et 7j/7.",
-    prices: [
-      PriceOption(price: "1 100 FCFA", description: "/ mois"),
-      PriceOption(price: "9 000 FCFA", description: "/ an"),
-    ],
-    buttonText: "PASSER EN PREMIUM",
-  ),
-  */
-  
-  // --- OFFRES DE SERVICES PHYSIQUES (AUTORISÉES AVEC PAIEMENT EXTERNE) ---
-  SubscriptionOffer(
-    title: "Médecin de Famille \"Basique\"",
-    subtitle: "VOTRE MÉDECIN EN LIGNE, MÊME POUR PETIT BUDGET !",
+    title: "Pack Médecin de Famille",
+    subtitle: "CONSULTATIONS PHYSIQUES ET SUIVI",
     imagePath: "assets/images/offers/medecin_famille_basique.jpeg",
     features: [
-      "3 consultations vidéo/an avec un médecin généraliste",
-      "Réduction de 10% sur les consultations et bilans à domicile",
-      "Médecin disponible 24h/24 et 7j/7",
-      "1 livraison gratuite sur la marketplace",
+      "3 consultations vidéo avec un médecin généraliste",
+      "Réduction sur les actes médicaux à domicile",
+      "Disponibilité des médecins 24h/24",
+      "Coordination des soins physiques",
     ],
-    closingText: "Un forfait malin pour avoir un avis médical rapide sans se déplacer.",
+    closingText: "Idéal pour un suivi médical régulier sans déplacement.",
     prices: [
-      PriceOption(price: "15 000 FCFA", description: "/ an (1 pers)"),
-      PriceOption(price: "35 000 FCFA", description: "/ an (4 pers)"),
+      PriceOption(price: "15 000 FCFA", description: " / an"),
     ],
-    buttonText: "CHOISIR CE PACK",
+    buttonText: "RÉSERVER CE SOIN",
   ),
-    SubscriptionOffer(
-    title: "Médecin de Famille \"Diamant\"",
-    subtitle: "L'EXCELLENCE MÉDICALE SANS LIMITE !",
+  SubscriptionOffer(
+    title: "Suivi Médical Complet",
+    subtitle: "VISITES À DOMICILE ET ANALYSES",
     imagePath: "assets/images/offers/medecin_famille_diamant.jpeg",
     features: [
-      "Consultations vidéo ILLIMITÉES avec un médecin généraliste",
-      "1 consultation généraliste + 1 bilan infectieux GRATUITS à domicile",
-      "TOUS vos bilans à domicile SANS FRAIS de transport",
-      "Réduction de 10% sur les autres services",
+      "Consultations illimitées avec médecin généraliste",
+      "1 visite de médecin à domicile incluse",
+      "Prélèvements biologiques à domicile sans frais de déplacement",
+      "Coordination complète des soins",
     ],
-    closingText: "Le summum du confort et de la tranquillité d'esprit !",
+    closingText: "Une prise en charge complète à domicile.",
     prices: [
-      PriceOption(price: "75 000 FCFA", description: "/ an (1 pers)"),
-      PriceOption(price: "100 000 FCFA", description: "/ an (2 pers)"),
+      PriceOption(price: "75 000 FCFA", description: " / an"),
     ],
-    buttonText: "OPTER PACK DIAMANT",
+    buttonText: "RÉSERVER CE SOIN",
   ),
   SubscriptionOffer(
     title: "Suivi de Grossesse",
-    subtitle: "VOTRE GYNÉCO EN LIGNE POUR UNE GROSSESSE ZEN !",
+    subtitle: "ACCOMPAGNEMENT GYNÉCOLOGIQUE",
     imagePath: "assets/images/offers/suivi_grossesse.jpeg",
     features: [
-      "Consultations vidéo ILLIMITÉES avec votre gynécologue",
-      "PACK de bilan prénatal inclus",
-      "3 échographies prénatales + 7 consultations prénatales",
-      "Médecin disponible 24h/24 et 7j/7",
+      "Suivi complet avec votre gynécologue",
+      "Bilan prénatal physique inclus",
+      "Coordination des 3 échographies prénatales",
+      "Assistance médicale 24h/24",
     ],
-    closingText: "Vivez une grossesse sereine. Un accompagnement personnalisé et complet.",
+    closingText: "Un accompagnement médical physique et constant.",
     prices: [
-      PriceOption(price: "140 000 FCFA", description: "/ an"),
+      PriceOption(price: "140 000 FCFA", description: " / an"),
     ],
-    buttonText: "SOUSCRIRE",
+    buttonText: "CONTACTER UN MÉDECIN",
   ),
   SubscriptionOffer(
-    title: "Suivi Bébé 0-24 mois",
-    subtitle: "VOTRE PÉDIATRE EN LIGNE POUR BÉBÉ !",
+    title: "Suivi Pédiatrique (0-24 mois)",
+    subtitle: "CONSULTATIONS ET VISITES BÉBÉ",
     imagePath: "assets/images/offers/suivi_bebe.jpeg",
     features: [
-      "Consultations vidéo ILLIMITÉES avec votre pédiatre",
-      "1 consultation/mois au cabinet + 1 consultation à domicile",
-      "Médecin disponible 24h/24 et 7j/7 pour toutes les urgences",
-      "3 livraisons gratuites sur la marketplace",
+      "Suivi régulier avec votre pédiatre",
+      "Visites au cabinet et à domicile programmées",
+      "Assistance urgence pédiatrique 24h/24",
+      "Livraison de médicaments à domicile",
     ],
-    closingText: "Le partenaire idéal pour les jeunes parents.",
+    closingText: "Le suivi médical essentiel pour les nourrissons.",
     prices: [
-      PriceOption(price: "150 000 FCFA", description: "/ an"),
+      PriceOption(price: "150 000 FCFA", description: " / an"),
     ],
-    buttonText: "SOUSCRIRE",
-  ),
-  SubscriptionOffer(
-    title: "Suivi Enfant 25 mois et +",
-    subtitle: "VOTRE PÉDIATRE POUR GRANDIR EN TOUTE SÉRÉNITÉ !",
-    imagePath: "assets/images/offers/suivi_bebe.jpeg", // Placeholder image
-    features: [
-        "Consultations vidéo ILLIMITÉES avec votre pédiatre",
-        "6 consultations/an au cabinet + 1 consultation à domicile",
-        "Médecin disponible 24h/24 et 7j/7",
-        "3 livraisons gratuites sur la marketplace",
-    ],
-    closingText: "Un accompagnement adapté pour les enfants en bas âge et au-delà.",
-    prices: [
-        PriceOption(price: "100 000 FCFA", description: "/ an"),
-    ],
-    buttonText: "SOUSCRIRE",
+    buttonText: "CONTACTER UN PÉDIATRE",
   ),
 ];
-
 
 class PremiumOffersScreen extends StatelessWidget {
   const PremiumOffersScreen({super.key});
 
-  void _initiatePayment(BuildContext context, SubscriptionOffer offer) {
-    // Simulation de paiement pour la version de test/production
-    // Apple autorise les moyens de paiement tiers pour les services physiques (Guideline 3.1.3(d))
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Redirection vers le paiement sécurisé pour : ${offer.title}"),
-        backgroundColor: Colors.green,
-      ),
+  // --- NOUVELLE FONCTION : REDIRECTION WHATSAPP ---
+  Future<void> _contactViaWhatsApp(BuildContext context, SubscriptionOffer offer) async {
+    // Numéro du support ADOMED
+    const String phoneNumber = "2250704044643"; 
+    
+    // Message pré-rempli
+    final String message = "Bonjour ADOMED,\n\n"
+        "Je souhaite souscrire au *${offer.title}* (${offer.prices.first.price}).\n"
+        "Merci de m'indiquer la procédure pour le rendez-vous.";
+
+    // Création de l'URL WhatsApp
+    final Uri whatsappUrl = Uri.parse(
+      "https://wa.me/$phoneNumber?text=${Uri.encodeComponent(message)}",
     );
+
+    try {
+      if (await canLaunchUrl(whatsappUrl)) {
+        await launchUrl(whatsappUrl, mode: LaunchMode.externalApplication);
+      } else {
+        // Fallback si WhatsApp n'est pas installé ou erreur
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Impossible d'ouvrir WhatsApp. Contactez le +225 07 04 04 46 43"),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      debugPrint("Erreur WhatsApp: $e");
+    }
   }
 
   void _showFullScreenImage(BuildContext context, String imagePath) {
@@ -189,7 +152,7 @@ class PremiumOffersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Nos Offres de Soins"), // Titre modifié pour éviter "Abonnement"
+        title: const Text("Nos Forfaits de Soins"),
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
       ),
@@ -197,28 +160,25 @@ class PremiumOffersScreen extends StatelessWidget {
         decoration: const BoxDecoration(
           gradient: AppColors.primaryGradient,
         ),
-        // Utilisation d'un Column dans un SingleChildScrollView pour ajouter le footer
         child: Column(
           children: [
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.all(16.0),
-                // Ajout de +1 pour le footer
                 itemCount: premiumOffers.length + 1,
                 itemBuilder: (context, index) {
-                  // Si on a atteint la fin de la liste, on affiche le texte légal
                   if (index == premiumOffers.length) {
                     return const Padding(
                       padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
                       child: Column(
                         children: [
                           Text(
-                            "Informations Légales & Sources",
+                            "Informations Légales",
                             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(height: 8),
                           Text(
-                            "Les services médicaux proposés (consultations, suivis) sont assurés par des professionnels de santé qualifiés et inscrits à l'Ordre National des Médecins de Côte d'Ivoire.",
+                            "Ces forfaits concernent exclusivement des prestations médicales physiques (consultations, visites, actes). Ils sont réalisés par des médecins inscrits à l'Ordre National des Médecins de Côte d'Ivoire.",
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.white70, fontSize: 12),
                           ),
@@ -236,7 +196,7 @@ class PremiumOffersScreen extends StatelessWidget {
                   final offer = premiumOffers[index];
                   return _OfferCard(
                     offer: offer,
-                    onPay: () => _initiatePayment(context, offer),
+                    onPay: () => _contactViaWhatsApp(context, offer), // Appel WhatsApp ici
                     onImageTap: () => _showFullScreenImage(context, offer.imagePath),
                   );
                 },
@@ -276,16 +236,12 @@ class _OfferCard extends StatelessWidget {
               offer.imagePath,
               fit: BoxFit.cover,
               height: 180,
-              // Gérer les erreurs si l'image n'est pas trouvée
               errorBuilder: (context, error, stackTrace) {
                 return Container(
                   height: 180,
                   color: Colors.grey[200],
                   child: const Center(
-                    child: Text(
-                      'Image non disponible',
-                      style: TextStyle(color: Colors.red),
-                    ),
+                    child: Icon(Icons.broken_image, color: Colors.grey),
                   ),
                 );
               },
@@ -318,7 +274,7 @@ class _OfferCard extends StatelessWidget {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(Iconsax.tick_circle, size: 16, color: Colors.green),
+                        const Icon(Iconsax.health, size: 16, color: Colors.green),
                         const SizedBox(width: 8),
                         Expanded(child: Text(feature)),
                       ],
@@ -333,7 +289,6 @@ class _OfferCard extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(height: 16),
-                // Affichage des prix
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -341,26 +296,22 @@ class _OfferCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: offer.prices.map((p) {
-                      return Flexible(
-                        child: Column(
-                          children: [
-                            Text(
-                              p.price,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.primary,
-                                  ),
-                            ),
-                            Text(
-                              p.description,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                          ],
-                        ),
+                      return Column(
+                        children: [
+                          Text(
+                            p.price,
+                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.primary,
+                                ),
+                          ),
+                          Text(
+                            "Honoraires médicaux",
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ],
                       );
                     }).toList(),
                   ),
@@ -373,16 +324,23 @@ class _OfferCard extends StatelessWidget {
             child: ElevatedButton(
               onPressed: onPay,
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
+                backgroundColor: AppColors.primary, // Couleur WhatsApp possible aussi (0xFF25D366)
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: Text(
-                offer.buttonText,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Iconsax.message), // Icône de message
+                  const SizedBox(width: 8),
+                  Text(
+                    offer.buttonText, // "RÉSERVER" ou "CONTACTER"
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ],
               ),
             ),
           ),
@@ -392,7 +350,6 @@ class _OfferCard extends StatelessWidget {
   }
 }
 
-// Widget simple pour afficher l'image en plein écran
 class FullScreenImageViewer extends StatelessWidget {
   final String imagePath;
   const FullScreenImageViewer({super.key, required this.imagePath});
